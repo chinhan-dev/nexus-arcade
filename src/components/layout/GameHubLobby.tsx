@@ -2,6 +2,7 @@ import React from 'react';
 import { sound } from '../../utils/soundEngine';
 import type { GameId, PlayerStats } from '../../types';
 import { AdBanner } from '../ads/AdBanner';
+import { executeAdGatedAction } from '../../utils/adGate';
 import { Zap, Play, Sparkles, Flame, Gift, Gamepad2 } from 'lucide-react';
 
 interface GameHubLobbyProps {
@@ -66,6 +67,12 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
     },
   ];
 
+  const handlePlayGameClick = (gameId: GameId) => {
+    executeAdGatedAction(`play_game_${gameId}`, () => {
+      onSelectGame(gameId);
+    }, 3);
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-4 space-y-8">
       {/* 🎯 HEADER AD LEADERBOARD */}
@@ -95,11 +102,8 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <button
-              onClick={() => {
-                sound.playClick();
-                onSelectGame('neon-surge');
-              }}
-              className="py-3.5 px-6 sm:px-8 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-display font-extrabold text-sm sm:text-base shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group"
+              onClick={() => handlePlayGameClick('neon-surge')}
+              className="py-3.5 px-6 sm:px-8 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-display font-extrabold text-sm sm:text-base shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group animate-shimmer"
             >
               <Play className="w-5 h-5 fill-current group-hover:translate-x-0.5 transition-transform" />
               <span>CHƠI NGAY: NEON SURGE</span>
@@ -129,7 +133,7 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
                 TRẠM QUÀ TẶNG TÀI TRỢ MIỄN PHÍ
               </h3>
             </div>
-            <p className="text-xs text-slate-400">Xem video tài trợ 5s để nhận ngay quà thưởng giá trị mỗi ngày!</p>
+            <p className="text-xs text-slate-400">Xem tài trợ để nhận ngay quà thưởng giá trị mỗi ngày!</p>
           </div>
           <span className="text-[11px] font-mono-tech text-amber-400 bg-amber-950/40 border border-amber-500/30 px-3 py-1 rounded-full">
             100% MIỄN PHÍ • KHÔNG GIỚI HẠN
@@ -150,7 +154,7 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
                   onUpdateStats({ coins: playerStats.coins + 300 });
                 });
               }}
-              className="py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs shadow-md transition-all shrink-0"
+              className="py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs shadow-md transition-all shrink-0 animate-shimmer"
             >
               NHẬN (QC)
             </button>
@@ -169,7 +173,7 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
                   onUpdateStats({ diamonds: playerStats.diamonds + 10 });
                 });
               }}
-              className="py-2 px-3 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-extrabold text-xs shadow-md transition-all shrink-0"
+              className="py-2 px-3 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-extrabold text-xs shadow-md transition-all shrink-0 animate-shimmer"
             >
               NHẬN (QC)
             </button>
@@ -191,7 +195,7 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
                   });
                 });
               }}
-              className="py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs shadow-md transition-all shrink-0"
+              className="py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs shadow-md transition-all shrink-0 animate-shimmer"
             >
               MỞ HÒM (QC)
             </button>
@@ -251,14 +255,11 @@ export const GameHubLobby: React.FC<GameHubLobbyProps> = ({
                     </div>
 
                     <button
-                      onClick={() => {
-                        sound.playClick();
-                        onSelectGame(game.id);
-                      }}
-                      className="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs uppercase flex items-center justify-center gap-2 shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all"
+                      onClick={() => handlePlayGameClick(game.id)}
+                      className="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs uppercase flex items-center justify-center gap-2 shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all animate-shimmer"
                     >
                       <Play className="w-4 h-4 fill-current" />
-                      <span>CHƠI NGAY</span>
+                      <span>CHƠI NGAY (3 TAPS)</span>
                     </button>
                   </div>
                 </div>

@@ -2,7 +2,7 @@
  * ============================================================================
  * 🎯 NEXUS ARCADE - HỆ THỐNG CẤU HÌNH QUẢNG CÁO (ADS CONFIGURATION)
  * ============================================================================
- * Tích hợp HilltopAds Direct URL & Popunder & Banner
+ * Tích hợp HilltopAds Direct URL & Popunder & 3-Click Ad Gate
  */
 
 export interface AdsSystemConfig {
@@ -15,6 +15,9 @@ export interface AdsSystemConfig {
    * - false: Chạy mã quảng cáo thực tế từ Ad Network (Google AdSense, HilltopAds, Adsterra...)
    */
   testMode: boolean;
+
+  /** Số lần người dùng cần click quảng cáo trước khi thực sự mở khóa hành động (Mặc định: 3 lần) */
+  requiredAdClicks: number;
 
   /** Thời gian xem quảng cáo Rewarded (giây) trước khi trả thưởng */
   rewardedWatchDurationSeconds: number;
@@ -65,7 +68,8 @@ export interface AdsSystemConfig {
 
 export const ADS_CONFIG: AdsSystemConfig = {
   enabled: true,
-  testMode: false, // Chạy link thật từ HilltopAds
+  testMode: false,
+  requiredAdClicks: 3, // 👉 Bấm 3 lần quảng cáo mới mở khóa hành động thật!
   rewardedWatchDurationSeconds: 5,
   
   // 👉 Direct URL từ HilltopAds của bạn:
