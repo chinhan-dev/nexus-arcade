@@ -2,8 +2,7 @@
  * ============================================================================
  * 🎯 NEXUS ARCADE - HỆ THỐNG CẤU HÌNH QUẢNG CÁO (ADS CONFIGURATION)
  * ============================================================================
- * Bạn có thể dễ dàng thay đổi mã quảng cáo, chèn Google AdSense, Adsterra,
- * Monetag, PopAds hoặc Direct Link tài trợ tại đây!
+ * Tích hợp HilltopAds Direct URL & Popunder & Banner
  */
 
 export interface AdsSystemConfig {
@@ -13,7 +12,7 @@ export interface AdsSystemConfig {
   /** 
    * Chế độ Test Mode:
    * - true: Hiển thị banner mô phỏng đẹp mắt + modal đếm ngược 5s nhận thưởng ngay để test
-   * - false: Chạy mã quảng cáo thực tế từ Ad Network (Google AdSense, Adsterra, script...)
+   * - false: Chạy mã quảng cáo thực tế từ Ad Network (Google AdSense, HilltopAds, Adsterra...)
    */
   testMode: boolean;
 
@@ -21,8 +20,8 @@ export interface AdsSystemConfig {
   rewardedWatchDurationSeconds: number;
 
   /**
-   * Direct Link Ad (Link rút gọn / link quảng cáo kiếm tiền như Adsterra, Monetag Direct Link)
-   * Khi người chơi bấm vào nút Rewarded (hoặc nút tài trợ), sẽ tự động mở tab link này nếu được điền!
+   * Direct Link Ad (Link quảng cáo trực tiếp từ HilltopAds / Adsterra / Monetag)
+   * Khi người chơi bấm vào nút Rewarded (Hồi sinh, Nhân đôi, Nhận coins, Quay gacha), sẽ tự động mở link này!
    */
   directLinkUrl: string;
 
@@ -66,13 +65,13 @@ export interface AdsSystemConfig {
 
 export const ADS_CONFIG: AdsSystemConfig = {
   enabled: true,
-  testMode: true, // Đổi thành false khi bạn dán code quảng cáo thật vào
+  testMode: false, // Chạy link thật từ HilltopAds
   rewardedWatchDurationSeconds: 5,
   
-  // 👉 Dán link direct quảng cáo của bạn vào đây (nếu dùng Adsterra / Monetag / PopCash / Shortlink)
-  directLinkUrl: "https://freepro.online/sponsor",
+  // 👉 Direct URL từ HilltopAds của bạn:
+  directLinkUrl: "https://massive-hall.com/bI3yV_0NP.3UpmVCbtmPVCJNZ/Dy0z3wM/zlYJ2FMoz/UF3-LfTvc/ztNnjEYoz/NYjKEk",
 
-  // 👉 Dán mã Google AdSense của bạn vào đây
+  // 👉 Google AdSense ID (nếu có sau này)
   adsensePublisherId: "ca-pub-XXXXXXXXXXXXXXXX",
 
   slots: {
