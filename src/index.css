@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-orbitron: 'Orbitron', sans-serif;
+    --font-rajdhani: 'Rajdhani', sans-serif;
+    --font-space: 'Space Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-space), system-ui, sans-serif;
+    background-color: #07080f;
+    color: #f1f5f9;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-orbitron), sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .font-mono-tech {
+    font-family: var(--font-rajdhani), monospace;
+  }
+}
+
+/* Custom Cyber Utilities & Glow Effects */
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45), 0 0 40px rgba(6, 182, 212, 0.2);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.45), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.neon-glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), 0 0 40px rgba(245, 158, 11, 0.2);
+}
+
+.neon-glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.45), 0 0 40px rgba(16, 185, 129, 0.2);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.8), 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+/* Cyber Grid Background Pattern */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.12) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(7, 8, 15, 0.95) 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Shimmer Animation for Ads & Special Buttons */
+@keyframes cyber-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: cyber-shimmer 2.5s infinite;
+}
+
+/* Pulse Glow */
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 3s infinite ease-in-out;
+}
