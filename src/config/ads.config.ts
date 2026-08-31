@@ -2,7 +2,7 @@
  * ============================================================================
  * 🎯 NEXUS ARCADE - HỆ THỐNG CẤU HÌNH QUẢNG CÁO (ADS CONFIGURATION)
  * ============================================================================
- * Sẵn sàng để tích hợp bất kỳ mạng quảng cáo nào (Adsterra, Monetag, AdSense, Direct Link...)
+ * Tích hợp Monetag Multitag & Monetag Direct Link & 3-Click Ad Gate
  */
 
 export interface AdsSystemConfig {
@@ -11,8 +11,8 @@ export interface AdsSystemConfig {
 
   /** 
    * Chế độ Test Mode:
-   * - true: Hiển thị banner mô phỏng đẹp mắt + modal nhận thưởng ngay để người chơi trải nghiệm
-   * - false: Chạy mã quảng cáo thực tế từ Ad Network
+   * - true: Hiển thị banner mô phỏng đẹp mắt + modal nhận thưởng ngay để test
+   * - false: Chạy mã quảng cáo thực tế từ Ad Network (Monetag)
    */
   testMode: boolean;
 
@@ -23,7 +23,7 @@ export interface AdsSystemConfig {
   rewardedWatchDurationSeconds: number;
 
   /**
-   * Direct Link Ad (Link quảng cáo trực tiếp từ mạng quảng cáo mới của bạn)
+   * Direct Link Ad (Link quảng cáo trực tiếp từ Monetag)
    * Khi người chơi bấm vào nút Rewarded (Hồi sinh, Nhân đôi, Nhận coins, Quay gacha), sẽ tự động mở link này!
    */
   directLinkUrl: string;
@@ -68,12 +68,12 @@ export interface AdsSystemConfig {
 
 export const ADS_CONFIG: AdsSystemConfig = {
   enabled: true,
-  testMode: true, // Sạch sẽ, chuyển sang test mode trong khi bạn đổi sang nhà mạng khác
-  requiredAdClicks: 3,
+  testMode: false, // Chạy link thật từ Monetag
+  requiredAdClicks: 3, // 👉 Bấm 3 lần quảng cáo mới mở khóa hành động thật!
   rewardedWatchDurationSeconds: 5,
   
-  // 👉 Dán Direct URL mới của bạn vào đây khi đổi sang mạng mới:
-  directLinkUrl: "",
+  // 👉 Direct URL từ Monetag của bạn:
+  directLinkUrl: "https://omg10.com/4/11691306",
 
   // 👉 Google AdSense ID (nếu có sau này)
   adsensePublisherId: "",
