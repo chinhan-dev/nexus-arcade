@@ -168,7 +168,7 @@ export const RewardedAdModal: React.FC<RewardedAdModalProps> = ({
         {/* Sponsor link footer */}
         <div className="mt-4 text-[11px] text-slate-500 flex items-center justify-center gap-1">
           <span>Quảng cáo đối tác bởi</span>
-          <span className="text-cyan-400 font-bold">HilltopAds Sponsor Network</span>
+          <span className="text-cyan-400 font-bold">Nexus Sponsor Network</span>
         </div>
       </div>
     </div>

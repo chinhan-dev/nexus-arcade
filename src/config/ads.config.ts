@@ -2,7 +2,7 @@
  * ============================================================================
  * 🎯 NEXUS ARCADE - HỆ THỐNG CẤU HÌNH QUẢNG CÁO (ADS CONFIGURATION)
  * ============================================================================
- * Tích hợp HilltopAds Direct URL & Popunder & 3-Click Ad Gate
+ * Sẵn sàng để tích hợp bất kỳ mạng quảng cáo nào (Adsterra, Monetag, AdSense, Direct Link...)
  */
 
 export interface AdsSystemConfig {
@@ -11,8 +11,8 @@ export interface AdsSystemConfig {
 
   /** 
    * Chế độ Test Mode:
-   * - true: Hiển thị banner mô phỏng đẹp mắt + modal đếm ngược 5s nhận thưởng ngay để test
-   * - false: Chạy mã quảng cáo thực tế từ Ad Network (Google AdSense, HilltopAds, Adsterra...)
+   * - true: Hiển thị banner mô phỏng đẹp mắt + modal nhận thưởng ngay để người chơi trải nghiệm
+   * - false: Chạy mã quảng cáo thực tế từ Ad Network
    */
   testMode: boolean;
 
@@ -23,7 +23,7 @@ export interface AdsSystemConfig {
   rewardedWatchDurationSeconds: number;
 
   /**
-   * Direct Link Ad (Link quảng cáo trực tiếp từ HilltopAds / Adsterra / Monetag)
+   * Direct Link Ad (Link quảng cáo trực tiếp từ mạng quảng cáo mới của bạn)
    * Khi người chơi bấm vào nút Rewarded (Hồi sinh, Nhân đôi, Nhận coins, Quay gacha), sẽ tự động mở link này!
    */
   directLinkUrl: string;
@@ -68,41 +68,41 @@ export interface AdsSystemConfig {
 
 export const ADS_CONFIG: AdsSystemConfig = {
   enabled: true,
-  testMode: false,
-  requiredAdClicks: 3, // 👉 Bấm 3 lần quảng cáo mới mở khóa hành động thật!
+  testMode: true, // Sạch sẽ, chuyển sang test mode trong khi bạn đổi sang nhà mạng khác
+  requiredAdClicks: 3,
   rewardedWatchDurationSeconds: 5,
   
-  // 👉 Direct URL từ HilltopAds của bạn:
-  directLinkUrl: "https://massive-hall.com/bI3yV_0NP.3UpmVCbtmPVCJNZ/Dy0z3wM/zlYJ2FMoz/UF3-LfTvc/ztNnjEYoz/NYjKEk",
+  // 👉 Dán Direct URL mới của bạn vào đây khi đổi sang mạng mới:
+  directLinkUrl: "",
 
   // 👉 Google AdSense ID (nếu có sau này)
-  adsensePublisherId: "ca-pub-XXXXXXXXXXXXXXXX",
+  adsensePublisherId: "",
 
   slots: {
     headerLeaderboard: {
       enabled: true,
-      adsenseSlotId: "1234567890",
-      customHtml: `<!-- Dán code HTML/Script banner 728x90 của bạn ở đây -->`,
+      adsenseSlotId: "",
+      customHtml: `<!-- Dán code banner mới của bạn ở đây -->`,
     },
     stickyBottom: {
       enabled: true,
-      adsenseSlotId: "1234567891",
-      customHtml: `<!-- Dán code HTML/Script banner Sticky Bottom ở đây -->`,
+      adsenseSlotId: "",
+      customHtml: `<!-- Dán code banner mới của bạn ở đây -->`,
     },
     sidebarSkyscraper: {
       enabled: true,
-      adsenseSlotId: "1234567892",
-      customHtml: `<!-- Dán code HTML/Script banner dọc 300x600 ở đây -->`,
+      adsenseSlotId: "",
+      customHtml: `<!-- Dán code banner mới của bạn ở đây -->`,
     },
     gameOverBanner: {
       enabled: true,
-      adsenseSlotId: "1234567893",
-      customHtml: `<!-- Dán code HTML/Script banner 300x250 Game Over ở đây -->`,
+      adsenseSlotId: "",
+      customHtml: `<!-- Dán code banner mới của bạn ở đây -->`,
     },
     luckyWheelBanner: {
       enabled: true,
-      adsenseSlotId: "1234567894",
-      customHtml: `<!-- Dán code HTML/Script banner Lucky Wheel ở đây -->`,
+      adsenseSlotId: "",
+      customHtml: `<!-- Dán code banner mới của bạn ở đây -->`,
     },
   },
 };
