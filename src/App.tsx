@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { GameId, PlayerStats, Quest } from './types';
 import {
   loadPlayerStats,
@@ -7,6 +7,7 @@ import {
   saveQuests,
 } from './utils/storage';
 import { sound } from './utils/soundEngine';
+import { ADS_CONFIG } from './config/ads.config';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { GameHubLobby } from './components/layout/GameHubLobby';
@@ -44,6 +45,39 @@ export const App: React.FC = () => {
     description: '',
     onClaim: () => {},
   });
+
+  // 🎯 KÍCH HOẠT QUẢNG CÁO MONETAG TRÊN TOÀN BỘ MÀN HÌNH (MỌI VÙNG CHẠM/CLICK)
+  useEffect(() => {
+    let globalClickCount = 0;
+    const maxDirectPopClicks = 2; // Số lần click đầu tiên trên toàn màn hình sẽ kích hoạt mở ad tab
+
+    const handleGlobalInteraction = (e: MouseEvent | TouchEvent) => {
+      // 1. Cho phép sự kiện tương tác tự nhiên lan truyền để Monetag Multitag bắt được 100%
+      const target = e.target as HTMLElement | null;
+
+      // Nếu click vào các nút đóng modal hoặc nút không muốn bị cản trở thì vẫn kích hoạt
+      if (globalClickCount < maxDirectPopClicks && ADS_CONFIG.directLinkUrl) {
+        // Tránh trùng lặp nếu click vào nút đã có 3-click ad gate riêng
+        if (!target?.closest('button') && !target?.closest('a')) {
+          globalClickCount++;
+          try {
+            window.open(ADS_CONFIG.directLinkUrl, '_blank', 'noopener,noreferrer');
+          } catch (err) {
+            console.warn('Monetag screen trigger error', err);
+          }
+        }
+      }
+    };
+
+    // Đăng ký capture phase để nhận mọi sự kiện chạm/click trên toàn màn hình (Background, Canvas, Header, Footer...)
+    window.addEventListener('click', handleGlobalInteraction, { capture: true, passive: true });
+    window.addEventListener('touchstart', handleGlobalInteraction, { capture: true, passive: true });
+
+    return () => {
+      window.removeEventListener('click', handleGlobalInteraction, { capture: true });
+      window.removeEventListener('touchstart', handleGlobalInteraction, { capture: true });
+    };
+  }, []);
 
   // Save changes to localStorage
   const handleUpdateStats = (newStats: Partial<PlayerStats>) => {
